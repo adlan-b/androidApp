@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/id_client"
+            android:icon="@drawable/ic_client"
+            android:title="@string/client" />
+        <item
+            android:id="@+id/id_special"
+            android:icon="@drawable/ic_special"
+            android:title="@string/special" />
+
+    </group>
+    <item android:title="@string/importance">
+        <menu>
+
+            <item
+                android:id="@+id/id_important"
+                android:icon="@drawable/ic_importance"
+                android:title="@string/important"/>
+            <item
+                android:id="@+id/id_normal"
+                android:icon="@drawable/ic_normal"
+                android:title="@string/normal"/>
+
+            <item
+                android:id="@+id/id_no_important"
+                android:icon="@drawable/ic_no_importance"
+                android:title="@string/no_important"/>
+
+        </menu>
+    </item>
+
+    <item android:title="@string/settings">
+        <menu>
+
+            <item
+                android:id="@+id/id_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/generel_settings"/>
+            <item
+                android:id="@+id/id_web"
+                android:icon="@drawable/ic_web"
+                android:title="@string/web_page"/>
+
+        </menu>
+    </item>
+
+
+
+</menu>

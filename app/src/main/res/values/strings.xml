@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">ClientList</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Client List</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="client">Kunde</string>
+    <string name="name">Vorname</string>
+    <string name="sec_name">Nachname</string>
+    <string name="tel">Telefon/Mobil</string>
+    <string name="important">Wichtig</string>
+    <string name="normal">Normal</string>
+    <string name="no_important">Unwichtig</string>
+    <string name="notes">Notiez</string>
+    <string name="importance">Notwendigkeit</string>
+    <string name="settings">Einstellungen</string>
+    <string name="generel_settings">Grundeinstellungen</string>
+    <string name="web_page">Web page</string>
+    <string name="special">Spezial</string>
+    <string name="edit">ändern</string>
+    <string name="delete_message">Sind Sie sicher?</string>
+    <string name="delete_title">Löschen</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+
+
+
+
+</resources>
