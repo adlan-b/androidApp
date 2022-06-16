@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="text_color_array">
+        <item>Black</item>
+        <item>Red</item>
+        <item>Orange</item>
+        <item>Green</item>
+
+    </string-array>
+    <string-array name="text_color_values">
+        <item>#070707</item>
+        <item>#EF0707</item>
+        <item>#E64312</item>
+        <item>#218109</item>
+
+    </string-array>
+
+</resources>
