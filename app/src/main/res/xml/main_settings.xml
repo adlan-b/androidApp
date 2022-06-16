@@ -1,4 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory android:title="@string/text_settings">
+
+        <ListPreference
+            android:icon="@drawable/ic_color"
+            android:defaultValue="#070707"
+            android:entries="@array/text_color_array"
+            android:entryValues="@array/text_color_values"
+            android:key="@string/text_name_color_key"
+            android:summary="@string/text_name_color_summary"
+            android:title="@string/text_name_color" />
+        <ListPreference
+            android:icon="@drawable/ic_color"
+            android:defaultValue="#070707"
+            android:entries="@array/text_color_array"
+            android:entryValues="@array/text_color_values"
+            android:summary="@string/text_sec_name_color_summary"
+            android:key="@string/text_sec_name_color_key"
+            android:title="@string/text_sec_name_color" />
+        <ListPreference
+            android:icon="@drawable/ic_color"
+            android:defaultValue="#070707"
+            android:entries="@array/text_color_array"
+            android:entryValues="@array/text_color_values"
+            android:summary="@string/text_tel_color_summary"
+            android:key="@string/text_tel_color_key"
+            android:title="@string/text_tel_color" />
+        <ListPreference
+            android:icon="@drawable/ic_color"
+            android:defaultValue="#070707"
+            android:entries="@array/text_color_array"
+            android:entryValues="@array/text_color_values"
+            android:summary="@string/text_tel_color_summary"
+            android:key="@string/text_tel_and_name_color_key"
+            android:title="@string/text_name_tel" />
+
+    </PreferenceCategory>
 </PreferenceScreen>

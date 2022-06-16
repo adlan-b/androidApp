@@ -27,7 +27,7 @@ public class EditActivity extends AppCompatActivity {
     private AppDataBase myDb;
     private int importance = 1;
     private int special = 0;
-    private  FloatingActionButton fb;
+    private FloatingActionButton fb;
     private CheckBox[] checkBoxes = new CheckBox[3];
     private boolean isEdit = false;
     private boolean new_user = false;
@@ -35,40 +35,33 @@ public class EditActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState)
-    {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_layot);
         init();
         getMyIntent();
         fb = findViewById(R.id.fb);
-        fb.setOnClickListener(new View.OnClickListener()
-        {
+        fb.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 getImportanceFromCheck();
 
                 if (!TextUtils.isEmpty(edName.getText().toString()) && !TextUtils.isEmpty(edSecName.getText().toString()) &&
-                        !TextUtils.isEmpty(edTel.getText().toString()) && !TextUtils.isEmpty(edNotes.getText().toString()))
-                {
+                        !TextUtils.isEmpty(edTel.getText().toString()) && !TextUtils.isEmpty(edNotes.getText().toString())) {
 
-                    AppExecutor.getInstance().getDiscIO().execute(new Runnable()
-                    {
+                    AppExecutor.getInstance().getDiscIO().execute(new Runnable() {
                         @Override
-                        public void run()
-                        {
-                            if(isEdit)
-                            {
+                        public void run() {
+                            if (isEdit) {
                                 Client client = new Client(edName.getText().toString(), edSecName.getText().toString(),
-                                        edTel.getText().toString(),importance, edNotes.getText().toString(),special);
+                                        edTel.getText().toString(), importance, edNotes.getText().toString(), special);
                                 client.setId(id);
                                 myDb.clientDAO().updateClient(client);
                                 finish();
-                            }else {
+                            } else {
 
                                 Client client = new Client(edName.getText().toString(), edSecName.getText().toString(),
-                                        edTel.getText().toString(),importance, edNotes.getText().toString(),special);
+                                        edTel.getText().toString(), importance, edNotes.getText().toString(), special);
                                 myDb.clientDAO().insertClient(client);
                                 finish();
                             }
@@ -83,8 +76,7 @@ public class EditActivity extends AppCompatActivity {
 
     }
 
-    private void init()
-    {
+    private void init() {
         fb = findViewById(R.id.fb);
         myDb = AppDataBase.getInstanceDb(getApplicationContext());
         edName = findViewById(R.id.edName);
@@ -101,60 +93,47 @@ public class EditActivity extends AppCompatActivity {
         checkBoxSpecial = findViewById(R.id.chekBoxSpecial);
     }
 
-    private void getMyIntent()
-    {
-         Intent i = getIntent();
-         if(i != null)
-         {
-             if(i.getStringExtra(Constans.NAME_KEY) != null)
-             {
+    private void getMyIntent() {
+        Intent i = getIntent();
+        if (i != null) {
+            if (i.getStringExtra(Constans.NAME_KEY) != null) {
+                setEditPressed(false);
+                edName.setText(i.getStringExtra(Constans.NAME_KEY));
+                edSecName.setText(i.getStringExtra(Constans.SEC_NAME_KEY));
+                edTel.setText(i.getStringExtra(Constans.TEL_KEY));
+                edNotes.setText(i.getStringExtra(Constans.DESC_KEY));
+                checkBoxes[i.getIntExtra(Constans.IMP_KEY, 0)].setChecked(true);
+                if (i.getIntExtra(Constans.SP_KEY, 0) == 1) checkBoxSpecial.setChecked(true);
+                id = i.getIntExtra(Constans.ID_KEY, 0);
+                new_user = false;
 
-                 setEditPressed(false);
-                 edName.setText(i.getStringExtra(Constans.NAME_KEY));
-                 edSecName.setText(i.getStringExtra(Constans.SEC_NAME_KEY));
-                 edTel.setText(i.getStringExtra(Constans.TEL_KEY));
-                 edNotes.setText(i.getStringExtra(Constans.DESC_KEY));
-                 checkBoxes[i.getIntExtra(Constans.IMP_KEY,0)].setChecked(true);
-                 if(i.getIntExtra(Constans.SP_KEY,0) == 1) checkBoxSpecial.setChecked(true);
-                 id = i.getIntExtra(Constans.ID_KEY,0);
-                 new_user = false;
-
-             }else {
-                 new_user = true;
-             }
-         }
+            } else {
+                new_user = true;
+            }
+        }
     }
 
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        if(!new_user)getMenuInflater().inflate(R.menu.main, menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (!new_user) getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.edit_menu)
-        {
+        if (id == R.id.edit_menu) {
             setEditPressed(true);
-        }
-
-        else if(id == R.id.id_delete)
-
-        {
+        } else if (id == R.id.id_delete) {
             deleteMessage();
         }
 
         return true;
     }
 
-    public void setEditPressed(boolean edit)
-    {
-        if (edit)
-        {
+    public void setEditPressed(boolean edit) {
+        if (edit) {
             fb.show();
-        }
-        else {
+        } else {
 
             fb.hide();
         }
@@ -181,83 +160,73 @@ public class EditActivity extends AppCompatActivity {
         edNotes.setFocusableInTouchMode(edit);
 
     }
-    public void deleteMessage()
-    {
+
+    public void deleteMessage() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_message);
         builder.setTitle(R.string.delete_title);
-       builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-           @Override
-           public void onClick(DialogInterface dialogInterface, int i) {
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
-               AppExecutor.getInstance().getDiscIO().execute(new Runnable() {
-                   @Override
-                   public void run() {
+                AppExecutor.getInstance().getDiscIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
 
-                       Client client = new Client(edName.getText().toString(), edSecName.getText().toString(),
-                               edTel.getText().toString(), importance, edNotes.getText().toString(), special);
-                       client.setId(id);
-                       myDb.clientDAO().deleteClient(client);
-                       finish();
+                        Client client = new Client(edName.getText().toString(), edSecName.getText().toString(),
+                                edTel.getText().toString(), importance, edNotes.getText().toString(), special);
+                        client.setId(id);
+                        myDb.clientDAO().deleteClient(client);
+                        finish();
 
-                   }
-
-
-               });
-
-           }
-
-       });
+                    }
 
 
-               builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialogInterface, int i) {
+                });
 
-                   }
-               });
-               builder.show();
+            }
+
+        });
+
+
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.show();
 
 
     }
 
 
-
-    public void onClickImp(View view)
-    {
+    public void onClickImp(View view) {
         checkBoxNormal.setChecked(false);
         checkBoxNoImp.setChecked(false);
     }
 
-    public void onClickNor(View view)
-    {
+    public void onClickNor(View view) {
         checkBoxImp.setChecked(false);
         checkBoxNoImp.setChecked(false);
     }
 
-    public void onClickNoImp(View view)
-    {
+    public void onClickNoImp(View view) {
         checkBoxImp.setChecked(false);
         checkBoxNormal.setChecked(false);
     }
 
-    private void getImportanceFromCheck()
-    {
-        if(checkBoxImp.isChecked())
-        {
+    private void getImportanceFromCheck() {
+        if (checkBoxImp.isChecked()) {
             importance = 0;
-        }
-        else if(checkBoxNormal.isChecked())
-        {
+        } else if (checkBoxNormal.isChecked()) {
             importance = 1;
-        }
-        else if(checkBoxNoImp.isChecked())
-        {
+        } else if (checkBoxNoImp.isChecked()) {
             importance = 2;
         }
 
 
-        if(checkBoxSpecial.isChecked()) special = 1;
+        if (checkBoxSpecial.isChecked()) special = 1;
 
     }
 

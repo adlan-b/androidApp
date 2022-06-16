@@ -25,7 +25,21 @@
     <string name="delete_title">Löschen</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
-
+    <string name="text_settings">Text settings</string>
+    <string name="text_name_color">Vorname text Farbe</string>
+    <string name="text_sec_name_color">Nachname text Farbe</string>
+    <string name="text_name_color_summary">Wählen Sie bitte die Farbe von Vorname aus</string>
+    <string name="text_sec_name_color_summary">Wählen Sie bitte die Farbe von Nachname aus</string>
+    <string name="text_tel_color_summary">Wählen Sie bitte die Farbe von Telefon aus</string>
+    <string name="text_tel_color">Telefon text Farbe</string>
+    <string name="text">Telefon text Farbe</string>
+    <string name="text_name_tel">Telefon und Name text Farbe</string>
+    <string name="text_name_tel_summary">Telefon und Name text Farbe</string>
+    <!--KEYS-->
+    <string name="text_name_color_key">text name color key</string>
+    <string name="text_sec_name_color_key">text sec name color key</string>
+    <string name="text_tel_color_key">text tel color key</string>
+    <string name="text_tel_and_name_color_key">text tel and name color key</string>
 
 
 

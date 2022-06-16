@@ -36,8 +36,6 @@ public class AppExecutor {
 
     private static class MyThreadHandler implements Executor {
         private Handler myThreadHandler = new Handler(Looper.getMainLooper());
-
-
         @Override
         public void execute(@NonNull Runnable runnable) {
             myThreadHandler.post(runnable);
